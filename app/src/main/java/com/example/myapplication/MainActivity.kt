@@ -12,6 +12,8 @@ import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import android.graphics.BitmapFactory
+import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
 
@@ -30,6 +32,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val actionBar = supportActionBar
+        actionBar!!.title = "  Registraion | Action Bar"
+        actionBar.subtitle = "  Cse Studets Form "
+        actionBar.setDisplayUseLogoEnabled(true)
+        actionBar.setDisplayShowHomeEnabled(true)
 
         btnimage=findViewById(R.id.btnimage)
         C1 = findViewById(R.id.c1)
@@ -70,15 +78,30 @@ class MainActivity : AppCompatActivity() {
                 result.append("\n C")
             }
             intent= Intent(this,MainActivity2::class.java)
-         //  intent.putExtra("image",R.id.btnimage)
             intent.putExtra("Name",user.text.toString())
             intent.putExtra("Email",email.text.toString())
             intent.putExtra("Domain",radioButton.text)
-         intent.putExtra("Programming_Lannguage",result.toString())
+           intent.putExtra("Programming_Lannguage",result.toString())
+            val snack= Snackbar.make(it,"User Data is Transfered Sucessfully", Snackbar.LENGTH_LONG)
+            snack.show()
             startActivity(intent)
 
         }
 
+    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.search -> Toast.makeText(this, "Search Clicked", Toast.LENGTH_SHORT).show()
+            R.id.refresh -> Toast.makeText(this, "Refresh Clicked", Toast.LENGTH_SHORT).show()
+
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -94,8 +117,7 @@ class MainActivity : AppCompatActivity() {
             // Requesting the permission
             ActivityCompat.requestPermissions(this@MainActivity, arrayOf(permission), requestCode)
         } else {
-            val snack= Snackbar.make(it,"User Data is Transfered Sucessfully", Snackbar.LENGTH_LONG)
-            snack.show()
+
 
             val cameraIntent=Intent(MediaStore.ACTION_IMAGE_CAPTURE)
              startActivityForResult(cameraIntent,REQUEST_CODE)
@@ -115,7 +137,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Camera Permission Denied", Toast.LENGTH_SHORT).show()
             }
         }
-        }
     }
+
+}
 
 

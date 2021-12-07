@@ -19,11 +19,6 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        val imageView: ImageView = findViewById(R.id.im2)
-        val bundle: Bundle = intent.extras!!
-        val resId: Int = bundle.getInt("image")
-        imageView.setImageResource(resId)
-
         val message1 = intent.getStringExtra("Name")
         val messageTextView1: TextView = findViewById(R.id.tex1)
         messageTextView1.text = message1
