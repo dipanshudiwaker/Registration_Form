@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="RadioB1">Big Data</string>
+    <string name="RadioB2">Cyber Security</string>
+    <string name="RadioB3">Full Stack Web Development</string>
+    <string name="RadioB4">Data Science</string>
+    <string name="button">click button</string>
+    <string name="dialogTitle">Exit</string>
+    <string name="dialogMessage">Do You Want To Exit</string>
+
+</resources>
